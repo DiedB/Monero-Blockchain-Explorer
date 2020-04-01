@@ -1,14 +1,25 @@
 .Intra {
+    position: absolute;
+    /* background-color: blue; */
+    width: 25%;
+    height: 500px;
+    top: calc(50% - 300px);
+    left: 150px;
+}
+
+.Intra.SignatureContainer {
+    position: absolute;
     background-color: red;
-    width: 10px;
-    height: 10px;
+    width: 500px;
+    height: 500px;
+    left: 150px;
 }
 
 .TransactionNode {
     height: 135px;
     width: 135px;
     
-    position: absolute;
+    /* position: absolute; */
 
     left: 45%;
     right: 42%;

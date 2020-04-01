@@ -8,12 +8,14 @@ const Transaction = props => {
     let { id } = useParams();
 
     return (
-        <div>
-            <table className={styles.TransactionInfo}>
-                <tr className={styles.TitleRow}>
-                    <td><h1>Transaction</h1></td>
-                    <td><h3>{id}</h3></td>
-                </tr>
+        <div className={styles.TransactionInfo} >
+            <table className={styles.TableTitle} >
+                <thead>
+                    <tr>
+                        <td><h1>Transaction</h1></td>
+                        <td><h3>{id}</h3></td>
+                    </tr>
+                </thead>
                 <tr>
                     <td><h2>Block</h2></td>
                     <td><h4>2066528</h4></td>
@@ -24,7 +26,7 @@ const Transaction = props => {
                 </tr>
                 <tr>
                     <td><h2>Fee</h2></td>
-                    <td><h4>0.00000160340000 xmr</h4></td>
+                    <td><h4>0.00000160340000 XMR</h4></td>
                 </tr>
                 <tr>
                     <td><h2>Size</h2></td>
@@ -39,6 +41,7 @@ const Transaction = props => {
                     <td><h4>0</h4></td>
                 </tr>
             </table >
+
             <Intra />
         </div >
     )

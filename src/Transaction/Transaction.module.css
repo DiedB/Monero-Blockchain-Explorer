@@ -2,14 +2,26 @@
     font-family: Rajdhani - sans-serif;
 }
 
-h1, h2, h3, h4 {
+h1, h2 {
     font-variant: small-caps;
+    display: inline;
 }
 
-.TransactionInfo {
+h3, h4 {
+    text-transform: uppercase;
+    display: inline;
+    color: #818181;
+}
+
+.TransactionInfo table {
+    border-collapse: collapse;
     position: absolute;
-    left: calc(50% - 527px / 2);
+    left: calc(50% - 740px / 2);
     top: 55px;
+}
+
+.TableTitle thead {
+    border-bottom: 3px solid rgba(83, 232, 169, 0.6);
 }
 
 .TransactionInfo td {
@@ -17,39 +29,26 @@ h1, h2, h3, h4 {
     min-width: 130px;
 }
 
-
 .TransactionInfo h1 {
     font-style: normal;
     font-weight: bold;
     font-size: 18px;
-    display: inline;
-    /* Put the headers closer together */
-    margin: 0
 }
 
 .TransactionInfo h2 {
     font-style: normal;
     font-weight: bold;
     font-size: 16px;
-    display: inline;
-    /* Put the headers closer together */
-    margin: 0;
 }
 
 .TransactionInfo h3 {
     font-style: normal;
     font-weight: bold;
-    font-size: 14px;
-    line-height: 0px;
-    display: inline;
-    color: #818181;
+    font-size: 16px;
 }
 
 .TransactionInfo h4 {
     font-style: normal;
     font-weight: bold;
     font-size: 14px;
-    line-height: 18px;
-    display: inline;
-    color: #818181;
 }
