@@ -1,6 +1,24 @@
-.Transaction h1 {
+* {
     font-family: Rajdhani - sans-serif;
+}
+
+h1, h2, h3, h4 {
     font-variant: small-caps;
+}
+
+.TransactionInfo {
+    position: absolute;
+    left: calc(50% - 527px / 2);
+    top: 55px;
+}
+
+.TransactionInfo td {
+    vertical-align: bottom;
+    min-width: 130px;
+}
+
+
+.TransactionInfo h1 {
     font-style: normal;
     font-weight: bold;
     font-size: 18px;
@@ -9,9 +27,7 @@
     margin: 0
 }
 
-.Transaction h2 {
-    font-family: Rajdhani - sans-serif;
-    font-variant: small-caps;
+.TransactionInfo h2 {
     font-style: normal;
     font-weight: bold;
     font-size: 16px;
@@ -20,9 +36,7 @@
     margin: 0;
 }
 
-.Transaction h3 {
-    font-family: Rajdhani - sans-serif;
-    font-variant: uppercase;
+.TransactionInfo h3 {
     font-style: normal;
     font-weight: bold;
     font-size: 14px;
@@ -31,9 +45,7 @@
     color: #818181;
 }
 
-.Transaction p {
-    font-family: Rajdhani - sans-serif;
-    font-variant: uppercase;
+.TransactionInfo h4 {
     font-style: normal;
     font-weight: bold;
     font-size: 14px;

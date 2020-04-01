@@ -9,17 +9,38 @@ const Transaction = props => {
 
     return (
         <div>
-            <div className={styles.Transaction}>
-                <div><h1>Transaction</h1><h3>{id}</h3></div>
-                <div><h2>Block</h2><p>2066528</p></div>
-                <div><h2>Output</h2><p>total confidential</p></div>
-                <div><h2>Fee</h2><p>0.00000160340000 XMR</p></div>
-                <div><h2>Size</h2><p>2607 bytes</p></div >
-                <div><h2>Mixin</h2><p>10</p></div >
-                <div><h2>Unlock</h2><p>0</p></div >
-            </div>
+            <table className={styles.TransactionInfo}>
+                <tr className={styles.TitleRow}>
+                    <td><h1>Transaction</h1></td>
+                    <td><h3>{id}</h3></td>
+                </tr>
+                <tr>
+                    <td><h2>Block</h2></td>
+                    <td><h4>2066528</h4></td>
+                </tr>
+                <tr>
+                    <td><h2>Output</h2></td>
+                    <td><h4>total confidential</h4></td>
+                </tr>
+                <tr>
+                    <td><h2>Fee</h2></td>
+                    <td><h4>0.00000160340000 xmr</h4></td>
+                </tr>
+                <tr>
+                    <td><h2>Size</h2></td>
+                    <td><h4>2067 bytes</h4></td>
+                </tr>
+                <tr>
+                    <td><h2>Mixin</h2></td>
+                    <td><h4>10</h4></td>
+                </tr>
+                <tr>
+                    <td><h2>Unlock</h2></td>
+                    <td><h4>0</h4></td>
+                </tr>
+            </table >
             <Intra />
-        </div>
+        </div >
     )
 }
 
