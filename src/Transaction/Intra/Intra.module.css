@@ -1,3 +1,22 @@
 .Intra {
     background-color: red;
+    width: 10px;
+    height: 10px;
+}
+
+.TransactionNode {
+    height: 135px;
+    width: 135px;
+    
+    position: absolute;
+
+    left: 45%;
+    right: 42%;
+    top: 50%;
+    bottom: 30%;
+
+    background-color: #C093D6;
+    border: 6px solid #FFFFFF;
+    border-radius: 100%;
+    box-sizing: border-box;
 }

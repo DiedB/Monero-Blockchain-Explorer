@@ -1,0 +1,43 @@
+.Transaction h1 {
+    font-family: Rajdhani - sans-serif;
+    font-variant: small-caps;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 18px;
+    display: inline;
+    /* Put the headers closer together */
+    margin: 0
+}
+
+.Transaction h2 {
+    font-family: Rajdhani - sans-serif;
+    font-variant: small-caps;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+    display: inline;
+    /* Put the headers closer together */
+    margin: 0;
+}
+
+.Transaction h3 {
+    font-family: Rajdhani - sans-serif;
+    font-variant: uppercase;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 0px;
+    display: inline;
+    color: #818181;
+}
+
+.Transaction p {
+    font-family: Rajdhani - sans-serif;
+    font-variant: uppercase;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 18px;
+    display: inline;
+    color: #818181;
+}

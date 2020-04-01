@@ -7,7 +7,9 @@ const Intra = props => {
     let { id } = useParams();
 
     return (
-        <div className={styles.Intra}></div>
+        // <div className={styles.Intra}></div>
+
+        <div className={styles.TransactionNode}></div>
 
     )
 }
