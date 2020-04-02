@@ -30,7 +30,7 @@ const TransactionInfo = ({ transactionInfo }) => (
                 </tr> */}
                 <tr>
                     <td><h2>Mixin</h2></td>
-                    <td><h4>{transactionInfo.mixin}</h4></td>
+                    <td><h4>{transactionInfo.mixin - 1 >= 0 ? transactionInfo.mixin - 1 : 0}</h4></td>
                 </tr>
                 {/* <tr>
                     <td><h2>Unlock</h2></td>

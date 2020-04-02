@@ -9,11 +9,14 @@
     width: 100%;
 }
 
-.OutputContainer {
-    display: grid;
-    grid-auto-rows: minmax(min-content, max-content);
-    grid-row-gap: 3vh;
-    justify-items: center;
-    align-content: center;
-}
+.AmountNode {    
+    height: 135px;
+    width: 135px;
 
+    background-color: #C093D6;
+    border: 6px solid #FFFFFF;
+    border-radius: 10%;
+    box-sizing: border-box;
+
+    cursor: pointer;
+}

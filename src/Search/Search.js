@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { useHistory } from "react-router-dom";
 
-import BlockExplorer from './Block/BlockExplorer';
+import SearchBar from './SearchBar'
+import Transaction from '../Transaction/Transaction';
 
 import styles from './Search.module.css';
 
@@ -12,10 +13,8 @@ const Search = props => {
     return (
         <div>
             <div className={styles.Search}>
-                <input className={styles.SearchBar} type="text" onChange={e => setSearchText(e.target.value)} value={searchText} />
-                <button onClick={() => history.push(`/transaction/${searchText}`)}>Go to transaction</button>
+                <SearchBar />
             </div>
-            <BlockExplorer />
         </div>
     )
 }

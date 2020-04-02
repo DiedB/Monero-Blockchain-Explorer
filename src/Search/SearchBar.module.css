@@ -1,0 +1,30 @@
+.Search {
+    height: 100%;
+    width: 100%;
+
+    display: flex;
+
+    align-items: center;
+    justify-items: center;
+}
+
+
+.SearchBar {
+    width: 50%;
+    font-size: 26px;
+
+    border: 2px solid rgba(83, 232, 169, 0.6);
+    border-radius: 100px;
+    padding-left: 1vh;
+    margin: 2vh;
+}
+
+button {
+    font-size: 26px;
+    border-radius: 50px;
+    background-color: rgba(83, 160, 232, 0.6);
+    border-color:  rgba(83, 160, 232, 0.6);
+    box-shadow: none;
+    color: white;
+    
+}
