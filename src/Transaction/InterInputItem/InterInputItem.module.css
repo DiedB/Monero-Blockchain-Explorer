@@ -1,0 +1,12 @@
+.InterInputItem {
+    width: 3vh;
+    height: 3vh;
+    margin: -3% -3% -3% -3%;
+    background-color: #C093D6;
+    border: 2px solid #FFFFFF;
+    border-radius: 50%;
+}
+
+.InterInputItem:hover {
+    background-color: #b078cc;
+}

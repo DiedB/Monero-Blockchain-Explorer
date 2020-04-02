@@ -39,15 +39,6 @@
     border-radius: 26px;
 }
 
-.InterInputItem {
-    width: 3vh;
-    height: 3vh;
-    margin: -3% -3% -3% -3%;
-    background-color: #C093D6;
-    border: 2px solid #FFFFFF;
-    border-radius: 50%;
-}
-
 .InterOutput {
     width: 100px;
     height: 100px;

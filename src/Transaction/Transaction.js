@@ -1,15 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import cx from 'classnames';
 
 import { OnionApi } from '../agent';
 
 import TransactionInfo from './TransactionInfo/TransactionInfo';
 import TransactionNode from './TransactionNode/TransactionNode';
 import RingSignature from './RingSignature/RingSignature';
+import InterInputItem from './InterInputItem/InterInputItem';
 
 import styles from './Transaction.module.css';
 
-const Transaction = props => {
+const Transaction = () => {
     let { id } = useParams();
 
     const [currentView, setCurrentView] = useState(true);
@@ -17,12 +19,15 @@ const Transaction = props => {
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
+        setIsLoading(true);
+
         const fetchTransactionInfo = async () => {
             const transactionResult = await OnionApi.getTransaction(id);
             const transaction = await transactionResult.json();
-            
+
             setTransactionInfo(transaction.data);
             setIsLoading(false);
+            console.log(transaction.data)
         }
 
         fetchTransactionInfo();
@@ -35,9 +40,9 @@ const Transaction = props => {
                 <div>
                     { currentView ? (
                         <div className={styles.InterInputContainer}>
-                            {[0, 1, 3, 4].map((value) => (
-                                <div className={styles.InterInput} key={(value + 1) * 100}>
-                                    {[...Array(17).keys()].map((value) => <div className={styles.InterInputItem} key={value} />)}
+                            {transactionInfo.inputs && [...Array(transactionInfo.inputs.length).keys()].map(i => (
+                                <div className={styles.InterInput} key={(i + 1) * 100}>
+                                    {[...Array(transactionInfo.inputs[i].mixins.length).keys()].map(j => <InterInputItem blockInfo={transactionInfo.inputs[i].mixins[j]} key={j} />)}
                                 </div>
                             ))}
                         </div>
@@ -50,13 +55,7 @@ const Transaction = props => {
 
                 {/* Inter, right */}
                 <div className={styles.OutputContainer}>
-                    { currentView ?
-                        [0, 1, 2].map((value) => <div className={styles.InterOutput} key={value} />)
-                    : 
-                        [0, 1, 2].map((value) => {
-                            return <div className={styles.IntraOutput} key={value} />
-                        })
-                    }
+                    {[...Array(transactionInfo.outputs.length).keys()].map((value) => <div className={cx({ [styles.InterOutput]: currentView, [styles.IntraOutput]: !currentView })} key={value} />)}
                 </div>
             </div>
         </div >
