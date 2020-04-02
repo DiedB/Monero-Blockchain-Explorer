@@ -16,8 +16,7 @@ const Chart = ({ id }) => {
 
     const dateAmount = 20;
 
-    function createDatapoints(dates) {
-        const start_monero = new Date(2014, 4, 18)
+    function createDatapoints(start_monero, dates) {
         const xs = getDates(start_monero, Date.now())
         const ys = new Array(xs.length).fill(0);
         dates.forEach(d => {
@@ -72,27 +71,34 @@ const Chart = ({ id }) => {
 
                 temp_dates.push(transaction.data.timestamp);
 
-                for (let input of transaction.data.inputs) {
-                    for (let inputMixin of input.mixins) {
-                        const transactionHash = await fetchTransactionHash(inputMixin.block_no, inputMixin.public_key);
-                        transactionList.push(transactionHash);
+                if (transaction.data.inputs) { // if statement added, no idea why but some are null (maybe mining rewards?)
+                    for (let input of transaction.data.inputs) {
+                        for (let inputMixin of input.mixins) {
+                            const transactionHash = await fetchTransactionHash(inputMixin.block_no, inputMixin.public_key);
+                            transactionList.push(transactionHash);
 
-                        const txResult = await OnionApi.getTransaction(transactionHash);
-                        const tx = await txResult.json();
+                            const txResult = await OnionApi.getTransaction(transactionHash);
+                            const tx = await txResult.json();
 
-                        temp_dates.push(tx.data.timestamp);
+                            temp_dates.push(tx.data.timestamp);
 
+                            if (temp_dates.length >= dateAmount) {
+                                break
+                            }
+                        }
                         if (temp_dates.length >= dateAmount) {
                             break
                         }
                     }
-                    if (temp_dates.length >= dateAmount) {
-                        break
-                    }
                 }
 
                 if (temp_dates.length >= dateAmount) {
-                    const res = createDatapoints(temp_dates)
+                    let temp_temp_dates = temp_dates;
+                    temp_temp_dates.sort();
+
+                    
+
+                    const res = createDatapoints(new Date(temp_temp_dates[0] * 1000), temp_dates)
 
                     const data = {
                         labels: res[0].map(y => y.toString()),

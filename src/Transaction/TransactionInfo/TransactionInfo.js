@@ -18,7 +18,7 @@ const TransactionInfo = ({ transactionInfo }) => (
                 </tr>
                 {/* <tr>
                     <td><h2>Output</h2></td>
-                    <td><h4>total confidential</h4></td>
+                    <td><h4>{transactionInfo.amount}</h4></td>
                 </tr> */}
                 <tr>
                     <td><h2>Fee</h2></td>
