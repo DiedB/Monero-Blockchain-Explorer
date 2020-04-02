@@ -2,7 +2,7 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 
 import Intra from './Intra/Intra';
-import InterInputContainer from './Inter/InterInputContainer';
+import Inter from './Inter/Inter';
 import styles from './Transaction.module.css';
 
 const Transaction = props => {

@@ -1,9 +1,0 @@
-.InterInputContainer {
-    display: grid;
-    grid-template-columns: auto auto auto;
-    justify-items: center;
-    
-    position: absolute;
-    top: calc(50% - 300px);
-    width: 100%;
-}

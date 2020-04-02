@@ -1,3 +1,22 @@
 .Inter {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    align-items: center;
+    justify-items: center;
     
+    position: absolute;
+    top: calc(50% - 300px);
+    width: 100%;
+}
+
+.InterInput {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(5, 20%);
+    grid-template-rows: repeat(3, 1fr);
+}
+
+.InputContainer {
+    display: grid;
+    grid-template-rows: repeat(3, 50%);
 }
