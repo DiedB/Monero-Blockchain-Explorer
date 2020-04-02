@@ -62,11 +62,11 @@
     background-color: #C093D6;
 }
 
-table {
+.SignatureDetail table {
     align-self: center;
 }
 
-thead {
+.SignatureDetail thead {
     font-family: Rajdhani - sans-serif;
     font-style: normal;
     font-weight: bold;
@@ -78,7 +78,7 @@ thead {
     font-variant: small-caps;
 }
 
-tbody {
+.SignatureDetail tbody {
     font-family: Rajdhani - sans-serif;
     font-style: normal;
     font-weight: bold;
@@ -92,7 +92,7 @@ tbody {
 
 }
 
-tr {
+.SignatureDetail tr {
     height: 4vh;
 }
 

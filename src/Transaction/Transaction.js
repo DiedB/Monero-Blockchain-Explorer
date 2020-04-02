@@ -16,7 +16,7 @@ const Transaction = props => {
             <TransactionInfo id={id} />
             <div className={styles.TransactionVisual}>
                 <div>
-                    { currentView ? (
+                    {currentView ? (
                         <div className={styles.InterInputContainer}>
                             {[0, 1, 3, 4].map((value) => (
                                 <div className={styles.InterInput} key={(value + 1) * 100}>
@@ -25,16 +25,16 @@ const Transaction = props => {
                             ))}
                         </div>
                     ) : (
-                        <RingSignature />
-                    )}
+                            <RingSignature />
+                        )}
                 </div>
                 <div className={styles.TransactionNode} onClick={() => setCurrentView(!currentView)} />
 
                 {/* Inter, right */}
                 <div className={styles.OutputContainer}>
-                    { currentView ?
+                    {currentView ?
                         [0, 1, 2].map((value) => <div className={styles.InterOutput} key={value} />)
-                    : 
+                        :
                         [0, 1, 2].map((value) => {
                             return <div className={styles.IntraOutput} key={value} />
                         })
