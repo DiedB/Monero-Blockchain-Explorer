@@ -13,11 +13,20 @@ h3, h4 {
     color: #818181;
 }
 
+.Transaction {
+    height: 70%;
+    display: flex;
+    flex-direction: column;
+    gap: 20vh;
+    /* grid-row-gap: 20vh; */
+    justify-content: space-between;
+    align-content: space-between;
+    align-items: center;
+    /* justify-items: center; */
+}
+
 .TransactionInfo table {
     border-collapse: collapse;
-    position: absolute;
-    left: calc(50% - 740px / 2);
-    top: 55px;
 }
 
 .TableTitle thead {
@@ -51,4 +60,18 @@ h3, h4 {
     font-style: normal;
     font-weight: bold;
     font-size: 14px;
+}
+
+.Line {
+    border: 13px solid rgba(83, 232, 169, 0.6);
+}
+
+.TransactionNode {    
+    height: 135px;
+    width: 135px;
+
+    background-color: #C093D6;
+    border: 6px solid #FFFFFF;
+    border-radius: 50%;
+    box-sizing: border-box;
 }

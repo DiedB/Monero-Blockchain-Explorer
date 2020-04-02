@@ -1,22 +1,36 @@
 .Inter {
+    width: 100%;
     display: grid;
     grid-template-columns: auto auto auto;
     align-items: center;
     justify-items: center;
-    
-    position: absolute;
-    top: calc(50% - 300px);
-    width: 100%;
 }
 
 .InterInput {
-    width: 100%;
-    display: grid;
-    grid-template-columns: repeat(5, 20%);
-    grid-template-rows: repeat(3, 1fr);
+    width:  20vh;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+    padding: 1vh;
+
+    border: 4px solid rgba(83, 160, 232, 0.6);
+    box-sizing: border-box;
+    border-radius: 26px;
 }
 
 .InputContainer {
     display: grid;
-    grid-template-rows: repeat(3, 50%);
+    grid-auto-rows: minmax(min-content, max-content);
+    grid-row-gap: 3vh;
+    justify-items: center;
+    align-content: center;
+}
+
+.OutputContainer {
+    display: grid;
+    grid-auto-rows: minmax(min-content, max-content);
+    grid-row-gap: 3vh;
+    justify-items: center;
+    align-content: center;
 }
