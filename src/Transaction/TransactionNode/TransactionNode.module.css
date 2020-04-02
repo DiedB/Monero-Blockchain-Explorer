@@ -15,5 +15,19 @@
 }
 
 .Intra {
-    background-color: red !important;
+    height: 135px;
+    width: 135px;
+
+    background-color:#888888;
+    border: 6px solid #FFFFFF;
+    border-radius: 20px;
+    box-sizing: border-box;
+
+    color: #FFFFFF;
+
+    cursor: pointer;
+}
+
+.Intra:hover {
+    background-color: #717171;
 }

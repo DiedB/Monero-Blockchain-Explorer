@@ -6,6 +6,7 @@ const getRequest = (url) => {
 
 const OnionApi = {
     getTransaction: (id) => getRequest(`${ONION_HOST}/transaction/${id}`),
+    getBlock: (id) => getRequest(`${ONION_HOST}/block/${id}`),
 }
 
-export default { OnionApi };
+export { OnionApi };
