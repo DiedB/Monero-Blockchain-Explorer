@@ -1,54 +1,46 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 
-import Intra from './Intra/Intra';
-import Inter from './Inter/Inter';
+import TransactionInfo from './TransactionInfo/TransactionInfo';
+import RingSignature from './RingSignature/RingSignature';
+
 import styles from './Transaction.module.css';
 
 const Transaction = props => {
     let { id } = useParams();
 
+    const [currentView, setCurrentView] = useState(true);
+
     return (
         <div className={styles.Transaction}>
-            <div className={styles.TransactionInfo} >
-                <table className={styles.TableTitle} >
-                    <thead>
-                        <tr>
-                            <td><h1>Transaction</h1></td>
-                            <td><h3>{id}</h3></td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><h2>Block</h2></td>
-                            <td><h4>2066528</h4></td>
-                        </tr>
-                        <tr>
-                            <td><h2>Output</h2></td>
-                            <td><h4>total confidential</h4></td>
-                        </tr>
-                        <tr>
-                            <td><h2>Fee</h2></td>
-                            <td><h4>0.00000160340000 XMR</h4></td>
-                        </tr>
-                        <tr>
-                            <td><h2>Size</h2></td>
-                            <td><h4>2067 bytes</h4></td>
-                        </tr>
-                        <tr>
-                            <td><h2>Mixin</h2></td>
-                            <td><h4>10</h4></td>
-                        </tr>
-                        <tr>
-                            <td><h2>Unlock</h2></td>
-                            <td><h4>0</h4></td>
-                        </tr>
-                    </tbody>
-                </table >
+            <TransactionInfo id={id} />
+            <div className={styles.TransactionVisual}>
+                <div>
+                    { currentView ? (
+                        <div className={styles.InterInputContainer}>
+                            {[0, 1, 3, 4].map((value) => (
+                                <div className={styles.InterInput} key={(value + 1) * 100}>
+                                    {[...Array(17).keys()].map((value) => <div className={styles.InterInputItem} key={value} />)}
+                                </div>
+                            ))}
+                        </div>
+                    ) : (
+                        <RingSignature />
+                    )}
+                </div>
+                <div className={styles.TransactionNode} onClick={() => setCurrentView(!currentView)} />
 
+                {/* Inter, right */}
+                <div className={styles.OutputContainer}>
+                    { currentView ?
+                        [0, 1, 2].map((value) => <div className={styles.InterOutput} key={value} />)
+                    : 
+                        [0, 1, 2].map((value) => {
+                            return <div className={styles.IntraOutput} key={value} />
+                        })
+                    }
+                </div>
             </div>
-
-            <Inter />
         </div >
     )
 }

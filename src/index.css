@@ -11,3 +11,14 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+h1, h2 {
+  font-variant: small-caps;
+  display: inline;
+}
+
+h3, h4 {
+  text-transform: uppercase;
+  display: inline;
+  color: #818181;
+}

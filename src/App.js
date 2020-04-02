@@ -15,10 +15,10 @@ function App() {
     return (
         <div className={styles.App}>
             <Router>
-                <div className={styles.Navigation}>
+                {/* <div className={styles.Navigation}>
                     <Link to="/transaction/9fb5324265e78c43d55fffd101811dc97733527bb16496df38be11f4e3e0e1f4">Transaction example</Link>
                 </div>
-                
+                 */}
                 <Switch>
                     <Route path="/transaction/:id">
                         <Transaction />

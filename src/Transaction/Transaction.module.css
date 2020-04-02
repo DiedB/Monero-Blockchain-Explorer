@@ -1,67 +1,20 @@
-* {
-    font-family: Rajdhani - sans-serif;
-}
-
-h1, h2 {
-    font-variant: small-caps;
-    display: inline;
-}
-
-h3, h4 {
-    text-transform: uppercase;
-    display: inline;
-    color: #818181;
-}
-
 .Transaction {
-    height: 70%;
+    height: 100%;
+
     display: flex;
     flex-direction: column;
-    gap: 20vh;
-    justify-content: space-between;
-    align-content: space-between;
     align-items: center;
+    justify-content: space-between;
 }
 
-.TransactionInfo table {
-    border-collapse: collapse;
-}
+.TransactionVisual {
+    flex-grow: 1;
+    width: 100%;
 
-.TableTitle thead {
-    border-bottom: 3px solid rgba(83, 232, 169, 0.6);
-}
-
-.TransactionInfo td {
-    vertical-align: bottom;
-    min-width: 130px;
-}
-
-.TransactionInfo h1 {
-    font-style: normal;
-    font-weight: bold;
-    font-size: 18px;
-}
-
-.TransactionInfo h2 {
-    font-style: normal;
-    font-weight: bold;
-    font-size: 16px;
-}
-
-.TransactionInfo h3 {
-    font-style: normal;
-    font-weight: bold;
-    font-size: 16px;
-}
-
-.TransactionInfo h4 {
-    font-style: normal;
-    font-weight: bold;
-    font-size: 14px;
-}
-
-.Line {
-    border: 13px solid rgba(83, 232, 169, 0.6);
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    align-items: center;
+    justify-items: center;
 }
 
 .TransactionNode {    
@@ -72,4 +25,67 @@ h3, h4 {
     border: 6px solid #FFFFFF;
     border-radius: 50%;
     box-sizing: border-box;
+
+    cursor: pointer;
+}
+
+.TransactionNode:hover {
+    background-color: #b078cc;
+}
+
+/* Inter */
+.InterInputContainer {
+    display: grid;
+    grid-auto-rows: minmax(min-content, max-content);
+    grid-row-gap: 3vh;
+    justify-items: center;
+    align-content: center;
+}
+
+.InterInput {
+    width:  20vh;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+    padding: 1vh;
+
+    border: 4px solid rgba(83, 160, 232, 0.6);
+    box-sizing: border-box;
+    border-radius: 26px;
+}
+
+.InterInputItem {
+    width: 3vh;
+    height: 3vh;
+    margin: -3% -3% -3% -3%;
+    background-color: #C093D6;
+    border: 2px solid #FFFFFF;
+    border-radius: 50%;
+}
+
+.InterOutput {
+    width: 100px;
+    height: 100px;
+    background-color: #C093D6;
+    border-radius: 50%;
+}
+
+/* Intra */
+
+.IntraOutput {
+    width: 100px;
+    height: 100px;
+    background-color: #C093D6;
+    border-radius: 50%;
+}
+
+/* General */
+
+.OutputContainer {
+    display: grid;
+    grid-auto-rows: minmax(min-content, max-content);
+    grid-row-gap: 3vh;
+    justify-items: center;
+    align-content: center;
 }
