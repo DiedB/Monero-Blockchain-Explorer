@@ -1,5 +1,6 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
+import LineTo from 'react-lineto';
 
 import styles from './Inter.module.css';
 import tstyles from '../Transaction.module.css'
@@ -10,15 +11,17 @@ const Inter = props => {
     let { id } = useParams();
 
     return (
-
         <div className={styles.Inter}>
+
             <div className={styles.InputContainer}>
                 {[0, 1, 3, 4].map((value) => {
-                    return (<div className={styles.InterInput}>
-                        {[0, 1, 2, 4, 5, 6, 7, 8, 9, 10, 15, 16, 17].map((value) => {
-                            return <InterInputItem key={value} />
-                        })}
-                    </div>)
+                    return (
+                        <div className={styles.InterInput} key={(value + 1) * 100}>{
+                            [0, 1, 2, 4, 5, 6, 7, 8, 9, 10, 15, 16, 17].map((value) => {
+                                return <InterInputItem key={value} />
+                            })
+                        }
+                        </div>)
                 })}
             </div>
             <div className={tstyles.TransactionNode}>
@@ -29,8 +32,17 @@ const Inter = props => {
                     return <InterOutput key={value} />
                 })}
             </div>
-        </div >
+            <LineTo
+                from={styles.InterInput}
+                to={tstyles.TransactionNode}
+                delay={0}
+                fromAnchor="middle right"
+                toAnchor="middle center"
 
+                borderWidth={12}
+                borderColor="rgba(83, 232, 169, 0.6)"
+            />
+        </div >
     )
 }
 

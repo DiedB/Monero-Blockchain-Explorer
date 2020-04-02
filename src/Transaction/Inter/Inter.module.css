@@ -6,6 +6,14 @@
     justify-items: center;
 }
 
+.InputContainer {
+    display: grid;
+    grid-auto-rows: minmax(min-content, max-content);
+    grid-row-gap: 3vh;
+    justify-items: center;
+    align-content: center;
+}
+
 .InterInput {
     width:  20vh;
     display: flex;
@@ -17,14 +25,6 @@
     border: 4px solid rgba(83, 160, 232, 0.6);
     box-sizing: border-box;
     border-radius: 26px;
-}
-
-.InputContainer {
-    display: grid;
-    grid-auto-rows: minmax(min-content, max-content);
-    grid-row-gap: 3vh;
-    justify-items: center;
-    align-content: center;
 }
 
 .OutputContainer {

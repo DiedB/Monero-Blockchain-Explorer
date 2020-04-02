@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useHistory } from "react-router-dom";
 
 import styles from './Search.module.css';
+import BlockExplorer from './Block/BlockExplorer';
 
 
 const Search = props => {
@@ -9,9 +10,13 @@ const Search = props => {
     const history = useHistory();
 
     return (
-        <div className={styles.Search}>
-            <input className={styles.SearchBar} type="text" onChange={e => setSearchText(e.target.value)} value={searchText} />
-            <button onClick={() => history.push(`/transaction/${searchText}`)}>Go to transaction</button>
+        <div>
+            <div className={styles.Search}>
+                <input className={styles.SearchBar} type="text" onChange={e => setSearchText(e.target.value)} value={searchText} />
+                <button onClick={() => history.push(`/transaction/${searchText}`)}>Go to transaction</button>
+            </div>
+            <hr className={styles.Line}></hr>
+            <BlockExplorer />
         </div>
     )
 }

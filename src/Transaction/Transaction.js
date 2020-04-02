@@ -48,7 +48,7 @@ const Transaction = props => {
 
             </div>
 
-            <Intra />
+            <Inter />
         </div >
     )
 }

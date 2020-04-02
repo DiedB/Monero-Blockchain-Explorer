@@ -1,0 +1,14 @@
+.BlockExplorer {
+    display: grid;
+    grid-template-columns: auto auto auto auto auto auto;
+
+    height: 85vh;
+
+    align-items: center;
+    justify-items: center;
+    column-gap: 4vh;
+    row-gap: 8vh;
+
+    padding: 4vh;
+    overflow-y: scroll;
+}
