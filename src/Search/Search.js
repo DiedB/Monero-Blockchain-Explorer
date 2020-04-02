@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { useHistory } from "react-router-dom";
 
-import styles from './Search.module.css';
 import SearchBar from './SearchBar'
 import Transaction from '../Transaction/Transaction';
 
+import styles from './Search.module.css';
 
 const Search = props => {
     const [searchText, setSearchText] = useState("");
@@ -15,7 +15,6 @@ const Search = props => {
             <div className={styles.Search}>
                 <SearchBar />
             </div>
-            <hr className={styles.Line}></hr>=
         </div>
     )
 }

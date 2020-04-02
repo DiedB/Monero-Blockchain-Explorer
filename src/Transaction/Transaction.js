@@ -8,6 +8,7 @@ import TransactionInfo from './TransactionInfo/TransactionInfo';
 import TransactionNode from './TransactionNode/TransactionNode';
 import RingSignature from './RingSignature/RingSignature';
 import InterInputItem from './InterInputItem/InterInputItem';
+import SearchBar from '../Search/SearchBar';
 
 import styles from './Transaction.module.css';
 
@@ -35,19 +36,26 @@ const Transaction = () => {
 
     return !isLoading ? (
         <div className={styles.Transaction}>
+            <SearchBar />
             <TransactionInfo transactionInfo={transactionInfo} />
             <div className={styles.TransactionVisual}>
                 <div>
                     {currentView ? (
                         <div className={styles.InterInputContainer}>
                             {transactionInfo.inputs && [...Array(transactionInfo.inputs.length).keys()].map(i => (
-                                <div className={styles.InterInput} key={(i + 1) * 100}>
+                                <div className={styles.InterInput} key={(i)}>
                                     {[...Array(transactionInfo.inputs[i].mixins.length).keys()].map(j => <InterInputItem blockInfo={transactionInfo.inputs[i].mixins[j]} key={j} />)}
                                 </div>
                             ))}
                         </div>
                     ) : (
-                            <RingSignature />
+                            <div>
+                                {transactionInfo.inputs && [...Array(transactionInfo.inputs.length).keys()].map(i => (
+                                    <div key={(i)}>
+                                        <RingSignature txHash={transactionInfo.tx_hash} keyImage={transactionInfo.inputs[i].key_image} />
+                                    </div>
+                                ))}
+                            </div>
                         )}
                 </div>
 
