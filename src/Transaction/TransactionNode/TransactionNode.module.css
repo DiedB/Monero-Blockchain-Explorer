@@ -7,6 +7,8 @@
     border-radius: 50%;
     box-sizing: border-box;
 
+    color: transparent;
+
     cursor: pointer;
 }
 
@@ -22,6 +24,12 @@
     border: 6px solid #FFFFFF;
     border-radius: 20px;
     box-sizing: border-box;
+
+    font-size: 64px;
+
+    line-height: 120px;
+    text-align: center;
+    text-justify: center;
 
     color: #FFFFFF;
 
