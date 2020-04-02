@@ -2,12 +2,12 @@ import React from 'react';
 import {
     BrowserRouter as Router,
     Switch,
-    Route,
-    Link
+    Route
 } from "react-router-dom";
 
 import Search from './Search/Search';
 import Transaction from './Transaction/Transaction';
+import SignatureDetail from './SignatureDetail/SignatureDetail';
 
 import styles from './App.module.css';
 
@@ -22,6 +22,9 @@ function App() {
                 <Switch>
                     <Route path="/transaction/:id">
                         <Transaction />
+                    </Route>
+                    <Route path="/signature/:txHash/:keyImage">
+                        <SignatureDetail />
                     </Route>
                     <Route path="/">
                         <Search />

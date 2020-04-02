@@ -31,7 +31,6 @@ const InterInputItem = ({ blockInfo }) => {
         fetchTransactionHash();
     })
 
-
     return !isLoading ? (
         <Link className={styles.InterInputItem} to={`/transaction/${transactionHash}`}>
             <div  />
