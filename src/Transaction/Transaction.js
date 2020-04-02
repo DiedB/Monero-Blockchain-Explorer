@@ -8,6 +8,7 @@ import TransactionInfo from './TransactionInfo/TransactionInfo';
 import TransactionNode from './TransactionNode/TransactionNode';
 import RingSignature from './RingSignature/RingSignature';
 import InterInputItem from './InterInputItem/InterInputItem';
+import Chart from './Chart/Chart';
 
 import styles from './Transaction.module.css';
 
@@ -27,7 +28,6 @@ const Transaction = () => {
 
             setTransactionInfo(transaction.data);
             setIsLoading(false);
-            console.log(transaction.data)
         }
 
         fetchTransactionInfo();
@@ -64,6 +64,7 @@ const Transaction = () => {
                     {[...Array(transactionInfo.outputs.length).keys()].map((value) => <div className={cx({ [styles.InterOutput]: currentView, [styles.IntraOutput]: !currentView })} key={value} />)}
                 </div>
             </div>
+            <Chart id={id} />
         </div >
     ) : "Loading...";
 }
