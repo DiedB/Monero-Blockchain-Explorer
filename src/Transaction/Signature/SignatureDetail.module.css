@@ -1,8 +1,58 @@
 .SignatureDetail {
-    width: 100%;
-    justify-items: center;
-    align-self: center;
+    height: 70%;
+    margin: 4vh;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
+
+.InfoGrid {
+
+    display: grid;
+    grid-template-columns: 60px 1fr;
+    grid-template-rows: auto auto;
+}
+
+.InfoGrid .Number {
+    font-family: Rajdhani - sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 50px;
+    justify-self: start;
+    align-self: end;
+
+    grid-column: 1;
+    grid-row: 1 / span 2;
+}
+
+.InfoGrid .Title {
+    font-family: Rajdhani - sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 26px;
+    text-transform: capitalize;
+    justify-self: start;
+    align-self: end;
+    color: #989898;
+    
+    grid-column: 2;
+    grid-row: 1;
+}
+
+.InfoGrid .KeyImage {
+    font-family: Rajdhani - sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 26px;
+
+    justify-self: start;
+    align-self: end;
+
+    grid-column: 2;
+    grid-row: 2;}
 
 .Element {
     /* position: relative; */
@@ -20,7 +70,7 @@ thead {
     font-family: Rajdhani - sans-serif;
     font-style: normal;
     font-weight: bold;
-    font-size: 14px;
+    font-size: 20px;
     line-height: 18px;
     /* identical to box height */
 
@@ -32,7 +82,7 @@ tbody {
     font-family: Rajdhani - sans-serif;
     font-style: normal;
     font-weight: bold;
-    font-size: 12px;
+    font-size: 16px;
     line-height: 16px;
     /* identical to box height */
 
