@@ -2,6 +2,7 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 
 import RingSignature from './RingSignature';
+import IntraOutput from './IntraOutput'
 import styles from './Intra.module.css';
 
 const Intra = props => {
@@ -11,13 +12,14 @@ const Intra = props => {
 
         <div className={styles.Intra}>
             <div className={styles.SignatureContainer}>
-                hallo
+                <RingSignature />
+
             </div>
-            <div className={styles.Transactionnode}>
-                inhoud
-            </div>
+            <div className={styles.TransactionNode}></div>
             <div className={styles.OutputsContainer}>
-                hallo
+                {[0, 1, 2].map((value) => {
+                    return <IntraOutput key={value} />
+                })}
             </div>
         </div>
 

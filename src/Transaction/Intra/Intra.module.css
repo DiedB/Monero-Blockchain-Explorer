@@ -1,33 +1,24 @@
 .Intra {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    align-items: center;
+    justify-items: center;
+    
     position: absolute;
-    /* background-color: blue; */
-    width: 25%;
-    height: 500px;
     top: calc(50% - 300px);
-    left: 150px;
+    width: 100%;
 }
 
-.Intra.SignatureContainer {
-    position: absolute;
-    background-color: red;
-    width: 500px;
-    height: 500px;
-    left: 150px;
+.SignatureContainer {
 }
 
-.TransactionNode {
+.TransactionNode {    
     height: 135px;
     width: 135px;
-    
-    /* position: absolute; */
-
-    left: 45%;
-    right: 42%;
-    top: 50%;
-    bottom: 30%;
 
     background-color: #C093D6;
     border: 6px solid #FFFFFF;
     border-radius: 100%;
     box-sizing: border-box;
 }
+

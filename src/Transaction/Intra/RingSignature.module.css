@@ -1,8 +1,15 @@
-RingSpace {
-    position: absolute;
-    width: 264px;
-    height: 272.29px;
-    left: 151px;
-    top: 229px;
-    background-color: blue;
+.Ring {
+    height: 100px;
+    width: 100px;
+    text-align: center;
+    vertical-align: middle;
+    justify-content: center;
+    border-radius: 50%;
+    border: 6px solid rgba(83, 232, 169, 0.6);
+}
+
+.Ring p {
+    font-family: Rajdhani - sans-serif;
+    font-weight: bold;
+    font-size: 30px;
 }
