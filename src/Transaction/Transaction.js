@@ -1,7 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
+import { OnionApi } from '../agent';
+
 import TransactionInfo from './TransactionInfo/TransactionInfo';
+import TransactionNode from './TransactionNode/TransactionNode';
 import RingSignature from './RingSignature/RingSignature';
 
 import styles from './Transaction.module.css';
@@ -10,6 +13,13 @@ const Transaction = props => {
     let { id } = useParams();
 
     const [currentView, setCurrentView] = useState(true);
+
+    // useEffect(async () => {
+    //     async fetchData = () => {
+
+    //     }
+    //     await OnionApi.getTransaction(props.id);
+    // })
 
     return (
         <div className={styles.Transaction}>
@@ -28,7 +38,8 @@ const Transaction = props => {
                             <RingSignature />
                         )}
                 </div>
-                <div className={styles.TransactionNode} onClick={() => setCurrentView(!currentView)} />
+
+                <TransactionNode currentView={currentView} toggleView={() => setCurrentView(!currentView)} />
 
                 {/* Inter, right */}
                 <div className={styles.OutputContainer}>

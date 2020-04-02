@@ -1,0 +1,19 @@
+.TransactionNode {    
+    height: 135px;
+    width: 135px;
+
+    background-color: #C093D6;
+    border: 6px solid #FFFFFF;
+    border-radius: 50%;
+    box-sizing: border-box;
+
+    cursor: pointer;
+}
+
+.TransactionNode:hover {
+    background-color: #b078cc;
+}
+
+.Intra {
+    background-color: red !important;
+}
