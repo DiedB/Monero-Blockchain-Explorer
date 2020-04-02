@@ -8,4 +8,4 @@ const OnionApi = {
     getTransaction: (id) => getRequest(`${ONION_HOST}/transaction/${id}`),
 }
 
-export default { OnionApi };
+export { OnionApi };

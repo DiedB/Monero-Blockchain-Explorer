@@ -13,17 +13,24 @@ const Transaction = props => {
     let { id } = useParams();
 
     const [currentView, setCurrentView] = useState(true);
+    const [transactionInfo, setTransactionInfo] = useState(null);
+    const [isLoading, setIsLoading] = useState(true);
 
-    // useEffect(async () => {
-    //     async fetchData = () => {
+    useEffect(() => {
+        const fetchTransactionInfo = async () => {
+            const transactionResult = await OnionApi.getTransaction(id);
+            const transaction = await transactionResult.json();
+            
+            setTransactionInfo(transaction.data);
+            setIsLoading(false);
+        }
 
-    //     }
-    //     await OnionApi.getTransaction(props.id);
-    // })
+        fetchTransactionInfo();
+    }, [id])
 
-    return (
+    return !isLoading ? (
         <div className={styles.Transaction}>
-            <TransactionInfo id={id} />
+            <TransactionInfo transactionInfo={transactionInfo} />
             <div className={styles.TransactionVisual}>
                 <div>
                     { currentView ? (
@@ -53,7 +60,7 @@ const Transaction = props => {
                 </div>
             </div>
         </div >
-    )
+    ) : "Loading...";
 }
 
 export default Transaction;
