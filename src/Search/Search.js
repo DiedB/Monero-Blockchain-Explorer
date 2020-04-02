@@ -3,6 +3,7 @@ import { useHistory } from "react-router-dom";
 
 import styles from './Search.module.css';
 import BlockExplorer from './Block/BlockExplorer';
+import SignatureDetail from '../Transaction/Signature/SignatureDetail'
 
 
 const Search = props => {
@@ -16,7 +17,8 @@ const Search = props => {
                 <button onClick={() => history.push(`/transaction/${searchText}`)}>Go to transaction</button>
             </div>
             <hr className={styles.Line}></hr>
-            <BlockExplorer />
+            <SignatureDetail />
+            {/* <BlockExplorer /> */}
         </div>
     )
 }

@@ -1,0 +1,56 @@
+.SignatureDetail {
+    width: 100%;
+    justify-items: center;
+    align-self: center;
+}
+
+.Element {
+    /* position: relative; */
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background-color: #C093D6;
+}
+
+table {
+    align-self: center;
+}
+
+thead {
+    font-family: Rajdhani - sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 18px;
+    /* identical to box height */
+
+    text-align: left;
+    font-variant: small-caps;
+}
+
+tbody {
+    font-family: Rajdhani - sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 12px;
+    line-height: 16px;
+    /* identical to box height */
+
+    text-align: left;
+    text-transform: uppercase;
+    color: #818181;
+
+}
+
+tr {
+    height: 4vh;
+}
+
+.TableElement {
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
+.TableContent {
+    padding-left: 100px;
+}

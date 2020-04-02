@@ -18,11 +18,9 @@ h3, h4 {
     display: flex;
     flex-direction: column;
     gap: 20vh;
-    /* grid-row-gap: 20vh; */
     justify-content: space-between;
     align-content: space-between;
     align-items: center;
-    /* justify-items: center; */
 }
 
 .TransactionInfo table {
