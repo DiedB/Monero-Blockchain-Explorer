@@ -4,6 +4,8 @@ import { Line } from 'react-chartjs-2';
 
 import { OnionApi } from '../../agent';
 
+import styles from './Chart.module.css';
+
 const Chart = ({ id }) => {
     const [data, setData] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
@@ -141,6 +143,8 @@ const Chart = ({ id }) => {
 
     // Chart.js options
     const options = {
+        responsive: true,
+        maintainAspectRatio: false,
         legend: {
             display: false
         },
@@ -159,7 +163,9 @@ const Chart = ({ id }) => {
     }
 
     return isLoading ? "Loading..." : (
-        <Line data={data} options={options} width={1350} height={400} />
+        <div className={styles.Chart}>
+            <Line data={data} options={options} />
+        </div>
     );
 };
 
