@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import _ from 'lodash';
 import { Line } from 'react-chartjs-2';
 
 import { OnionApi } from '../../agent';
@@ -14,7 +15,7 @@ const Chart = ({ id }) => {
         return date;
     }
 
-    const dateAmount = 20;
+    const dateAmount = 25;
 
     function createDatapoints(start_monero, dates) {
         const xs = getDates(start_monero, Date.now())
@@ -40,6 +41,9 @@ const Chart = ({ id }) => {
         }
         return dateArray;
     }
+
+    var arrSum = arr => arr.reduce((a,b) => a + b, 0);
+
 
     useEffect(() => {
         const fetchTransactionHash = async (blockNumber, publicKey) => {
@@ -96,19 +100,17 @@ const Chart = ({ id }) => {
                     let temp_temp_dates = temp_dates;
                     temp_temp_dates.sort();
 
-                    
-
                     const res = createDatapoints(new Date(temp_temp_dates[0] * 1000), temp_dates)
 
                     const data = {
-                        labels: res[0].map(y => y.toString()),
+                        labels: res[0].map(y => y.toDateString()),
                         datasets: [
                             {
                                 label: 'Monero time',
-                                fill: false,
-                                lineTension: 0.1,
-                                backgroundColor: 'rgba(75,192,192,0.4)',
-                                borderColor: 'rgba(75,192,192,1)',
+                                fill: true,
+                                lineTension: 0.3,
+                                backgroundColor: '#98F1CB',
+                                borderColor: '#98F1CB',
                                 borderCapStyle: 'butt',
                                 borderDash: [],
                                 borderDashOffset: 0.0,
@@ -137,8 +139,27 @@ const Chart = ({ id }) => {
         fetchDatesForMark();
     }, [id]);
 
+    // Chart.js options
+    const options = {
+        legend: {
+            display: false
+        },
+        scales: {
+            xAxes: [{
+                gridLines: {
+                    display:false
+                }
+            }],
+            yAxes: [{
+                gridLines: {
+                    display:false
+                }   
+            }]
+        }    
+    }
+
     return isLoading ? "Loading..." : (
-        <Line data={data} />
+        <Line data={data} options={options} width={1350} height={400} />
     );
 };
 
