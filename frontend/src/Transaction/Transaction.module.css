@@ -20,7 +20,7 @@
 }
 
 /* Inter */
-.InterInputContainer {
+.InterInputContainer, .OutputContainer {
     display: grid;
     grid-auto-rows: minmax(min-content, max-content);
     grid-row-gap: 3vh;
@@ -55,14 +55,4 @@
     height: 100px;
     background-color: #C093D6;
     border-radius: 50%;
-}
-
-/* General */
-
-.OutputContainer {
-    display: grid;
-    grid-auto-rows: minmax(min-content, max-content);
-    grid-row-gap: 3vh;
-    justify-items: center;
-    align-content: center;
 }

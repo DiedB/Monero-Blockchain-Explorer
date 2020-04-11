@@ -7,7 +7,8 @@ import { OnionApi } from '../agent';
 import TransactionInfo from './TransactionInfo/TransactionInfo';
 import TransactionNode from './TransactionNode/TransactionNode';
 import RingSignature from './RingSignature/RingSignature';
-import InterInputItem from './InterInputItem/InterInputItem';
+import TransactionLink from './TransactionLink/TransactionLink';
+import TransactionOutput from './TransactionOutput/TransactionOutput';
 
 import Chart from './Chart/Chart';
 
@@ -46,7 +47,7 @@ const Transaction = () => {
                         <div className={styles.InterInputContainer}>
                             {transactionInfo.inputs && [...Array(transactionInfo.inputs.length).keys()].map(i => (
                                 <div className={styles.InterInput} key={(i)}>
-                                    {[...Array(transactionInfo.inputs[i].mixins.length).keys()].map(j => <InterInputItem blockInfo={transactionInfo.inputs[i].mixins[j]} key={j} />)}
+                                    {[...Array(transactionInfo.inputs[i].mixins.length).keys()].map(j => <TransactionLink blockInfo={transactionInfo.inputs[i].mixins[j]} key={j} />)}
                                 </div>
                             ))}
                         </div>
@@ -65,7 +66,9 @@ const Transaction = () => {
 
                 {/* Inter, right */}
                 <div className={styles.OutputContainer}>
-                    {[...Array(transactionInfo.outputs.length).keys()].map((value) => <div className={cx({ [styles.InterOutput]: currentView, [styles.IntraOutput]: !currentView })} key={value} />)}
+                    {[...Array(transactionInfo.outputs.length).keys()].map((i) => (
+                        <TransactionOutput publicKey={transactionInfo.outputs[i].public_key} />
+                    ))}
                 </div>
             </div>
             <Chart id={id} />

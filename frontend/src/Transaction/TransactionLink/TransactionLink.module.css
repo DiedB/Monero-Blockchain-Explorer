@@ -1,4 +1,4 @@
-.InterInputItem {
+.TransactionLink {
     width: 2vh;
     height: 2vh;
     margin: -2% -2% -2% -2%;
@@ -7,6 +7,6 @@
     border-radius: 50%;
 }
 
-.InterInputItem:hover {
+.TransactionLink:hover {
     background-color: #b078cc;
 }
