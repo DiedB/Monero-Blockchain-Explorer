@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import _ from 'lodash';
+
 import { Line } from 'react-chartjs-2';
 
 import { BctApi } from '../../agent';
 
 import styles from './Chart.module.css';
+
+import _ from 'underscore';
 
 const Chart = ({ id }) => {
     const [data, setData] = useState(null);
@@ -41,6 +43,24 @@ const Chart = ({ id }) => {
         }
         return dateArray;
     }
+   
+    function smooth(list, degree) {
+        var win = degree*2-1;
+        var weight = _.range(0, win).map(function (x) { return 1.0; });
+        var weightGauss = [];
+        for (i in _.range(0, win)) {
+            var i = i-degree+1;
+            var frac = i/win;
+            var gauss = 1 / Math.exp((4*(frac))*(4*(frac)));
+            weightGauss.push(gauss);
+        }
+        weight = _(weightGauss).zip(weight).map(function (x) { return x[0]*x[1]; });
+        var smoothed = _.range(0, (list.length+1)-win).map(function (x) { return 0.0; });
+        for (i=0; i < smoothed.length; i++) {
+            smoothed[i] = _(list.slice(i, i+win)).zip(weight).map(function (x) { return x[0]*x[1]; }).reduce(function (memo, num){ return memo + num; }, 0) / _(weight).reduce(function (memo, num){ return memo + num; }, 0);
+        }
+        return smoothed;
+    }
 
     useEffect(() => {
         const fetchGraph = async () => {
@@ -48,11 +68,14 @@ const Chart = ({ id }) => {
             const graphJson = await graphData.json();
             
             graphJson.sort();
+            const res = createDatapoints(new Date(graphJson[0] * 1000), graphJson);
+            
+            const smoothed_res = [res[0], smooth(res[1], 5)];
 
-            const res = createDatapoints(new Date(graphJson[0] * 1000), graphJson)
+            console.log(smoothed_res)
 
             const data = {
-                labels: res[0].map(y => y.toDateString()),
+                labels: smoothed_res[0].map(y => y.toDateString()),
                 datasets: [
                     {
                         label: 'Monero time',
@@ -73,7 +96,7 @@ const Chart = ({ id }) => {
                         pointHoverBorderWidth: 2,
                         pointRadius: 1,
                         pointHitRadius: 10,
-                        data: res[1]
+                        data: smoothed_res[1]
                     }
                 ]
             };
