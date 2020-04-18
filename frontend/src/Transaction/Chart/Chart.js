@@ -19,7 +19,7 @@ const Chart = ({ id }) => {
         return date;
     }
 
-    function createDatapoints(start_monero, dates) {
+    const createDatapoints = (start_monero, dates) => {
         const xs = getDates(start_monero, Date.now())
         const ys = new Array(xs.length).fill(0);
         dates.forEach(d => {
@@ -48,15 +48,15 @@ const Chart = ({ id }) => {
         var win = degree*2-1;
         var weight = _.range(0, win).map(function (x) { return 1.0; });
         var weightGauss = [];
-        for (i in _.range(0, win)) {
-            var i = i-degree+1;
+        for (let i in _.range(0, win)) {
+            i = i-degree+1;
             var frac = i/win;
             var gauss = 1 / Math.exp((4*(frac))*(4*(frac)));
             weightGauss.push(gauss);
         }
         weight = _(weightGauss).zip(weight).map(function (x) { return x[0]*x[1]; });
         var smoothed = _.range(0, (list.length+1)-win).map(function (x) { return 0.0; });
-        for (i=0; i < smoothed.length; i++) {
+        for (let i=0; i < smoothed.length; i++) {
             smoothed[i] = _(list.slice(i, i+win)).zip(weight).map(function (x) { return x[0]*x[1]; }).reduce(function (memo, num){ return memo + num; }, 0) / _(weight).reduce(function (memo, num){ return memo + num; }, 0);
         }
         return smoothed;
@@ -71,8 +71,6 @@ const Chart = ({ id }) => {
             const res = createDatapoints(new Date(graphJson[0] * 1000), graphJson);
             
             const smoothed_res = [res[0], smooth(res[1], 5)];
-
-            console.log(smoothed_res)
 
             const data = {
                 labels: smoothed_res[0].map(y => y.toDateString()),

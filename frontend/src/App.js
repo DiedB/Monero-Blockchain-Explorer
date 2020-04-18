@@ -1,11 +1,11 @@
 import React from 'react';
 import {
-    BrowserRouter as Router,
+    HashRouter as Router,
     Switch,
     Route
 } from "react-router-dom";
 
-import Search from './Search/Search';
+import Navigation from './Navigation/Navigation';
 import Transaction from './Transaction/Transaction';
 import SignatureDetail from './SignatureDetail/SignatureDetail';
 
@@ -15,10 +15,7 @@ function App() {
     return (
         <div className={styles.App}>
             <Router>
-                {/* <div className={styles.Navigation}>
-                    <Link to="/transaction/9fb5324265e78c43d55fffd101811dc97733527bb16496df38be11f4e3e0e1f4">Transaction example</Link>
-                </div>
-                 */}
+                <Navigation />
                 <Switch>
                     <Route path="/transaction/:id">
                         <Transaction />
@@ -26,9 +23,9 @@ function App() {
                     <Route path="/signature/:txHash/:keyImage">
                         <SignatureDetail />
                     </Route>
-                    <Route path="/">
+                    {/* <Route path="/">
                         <Search />
-                    </Route>
+                    </Route> */}
                 </Switch>
             </Router>
         </div>

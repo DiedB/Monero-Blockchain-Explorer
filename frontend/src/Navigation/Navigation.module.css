@@ -1,0 +1,20 @@
+.Navigation {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 60px;
+
+    background-color: #F1F1F1;
+}
+
+.Logo {
+    max-height: 50px;
+    margin-left: 10px;
+}
+
+.SearchBar {
+    margin-right: 10px;
+
+    display: flex;
+    justify-content: center;
+}

@@ -12,7 +12,7 @@ const OnionApi = {
 
 const BctApi = {
     getOutput: (pk) => getRequest(`${BCT_HOST}/output/${pk}`),
-    getGraph: (id) => getRequest(`${BCT_HOST}/graph/${id}/4`),
+    getGraph: (id) => getRequest(`${BCT_HOST}/graph/${id}/2`),
     getTransaction: (blockNumber, publicKey) => getRequest(`${BCT_HOST}/transaction/${blockNumber}/${publicKey}`)
 }
 

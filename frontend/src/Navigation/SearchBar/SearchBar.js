@@ -8,9 +8,9 @@ const SearchBar = props => {
     const history = useHistory();
 
     return (
-        <div>
+        <div className={props.className}>
             <input className={styles.SearchBar} type="text" onChange={e => setSearchText(e.target.value)} value={searchText} />
-            <button onClick={() => history.push(`/transaction/${searchText}`)}>Go to transaction</button>
+            <button className={styles.SearchButton} onClick={() => history.push(`/transaction/${searchText}`)}>Go to transaction</button>
         </div>
     )
 }
