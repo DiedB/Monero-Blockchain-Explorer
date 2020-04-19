@@ -119,10 +119,7 @@ const Chart = ({ id }) => {
                 }
             }],
             yAxes: [{
-                gridLines: {
-                    display:false,
-                    drawBorder: false,
-                }   
+                display: false
             }]
         }    
     }
