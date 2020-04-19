@@ -70,7 +70,7 @@ const Chart = ({ id }) => {
             graphJson.sort();
             const res = createDatapoints(new Date(graphJson[0] * 1000), graphJson);
             
-            const smoothed_res = [res[0], smooth(res[1], 5)];
+            const smoothed_res = [res[0], smooth(res[1], 30)];
 
             const data = {
                 labels: smoothed_res[0].map(y => y.toDateString()),
