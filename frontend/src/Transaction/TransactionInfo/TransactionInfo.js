@@ -5,8 +5,8 @@ import styles from './TransactionInfo.module.css';
 const TransactionInfo = ({ transactionInfo }) => {
     console.log(transactionInfo);
 
-    const inputAmount = transactionInfo.inputs.length >= 0 ? transactionInfo.inputs.reduce((total, current) => total + current.amount, 0) / 1000000000000 : 0;
-    const outputAmount = transactionInfo.outputs.length >= 0 ? transactionInfo.outputs.reduce((total, current) => total + current.amount, 0)/ 1000000000000 : 0;
+    const inputAmount = transactionInfo.inputs && transactionInfo.inputs.length >= 0 ? transactionInfo.inputs.reduce((total, current) => total + current.amount, 0) / 1000000000000 : 0;
+    const outputAmount = transactionInfo.outputs && transactionInfo.outputs.length >= 0 ? transactionInfo.outputs.reduce((total, current) => total + current.amount, 0)/ 1000000000000 : 0;
 
     return (
         <div className={styles.TransactionInfo} >
