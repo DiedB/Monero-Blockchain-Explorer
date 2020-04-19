@@ -28,7 +28,9 @@ const RingSignature = props => {
 
     return (
         <Link to={`/signature/${props.txHash}/${props.keyImage}`}>
-            <div  className={styles.Ring} />
+            <div className={styles.Ring}>
+                <p>{props.mixin}</p>
+            </div>
         </Link>
 
     )

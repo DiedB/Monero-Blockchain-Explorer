@@ -7,7 +7,6 @@ const TransactionInfo = ({ transactionInfo }) => {
 
     const inputAmount = transactionInfo.inputs.reduce((total, current) => total + current.amount, 0) / 1000000000000;
     const outputAmount = transactionInfo.outputs.reduce((total, current) => total + current.amount, 0)/ 1000000000000;
-    console.log(inputAmount)
 
     return (
         <div className={styles.TransactionInfo} >
