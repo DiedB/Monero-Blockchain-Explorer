@@ -19,8 +19,8 @@ const Chart = ({ id }) => {
         return date;
     }
 
-    const createDatapoints = (start_monero, dates) => {
-        const xs = getDates(start_monero, Date.now())
+    const createDatapoints = (start_monero, end_monero, dates) => {
+        const xs = getDates(start_monero, end_monero)
         const ys = new Array(xs.length).fill(0);
         dates.forEach(d => {
             ys[getDateDifference(start_monero, new Date(d * 1000))] += 1;
@@ -68,7 +68,7 @@ const Chart = ({ id }) => {
             const graphJson = await graphData.json();
             
             graphJson.sort();
-            const res = createDatapoints(new Date(graphJson[0] * 1000), graphJson);
+            const res = createDatapoints(new Date(graphJson[0] * 1000), new Date(graphJson[graphJson.length - 1] * 1000), graphJson);
             
             const smoothed_res = [res[0], smooth(res[1], 30)];
 
