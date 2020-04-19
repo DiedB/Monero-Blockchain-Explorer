@@ -86,13 +86,21 @@ const fetchDatesForGraph = async (id, steps) => {
         if (transaction.data.inputs) {
             for (let input of transaction.data.inputs) {
                 for (let inputMixin of input.mixins) {
-                    const transactionHash = await fetchTransactionHash(inputMixin.block_no, inputMixin.public_key);
-                    transactionList.push(transactionHash);
+                    if (step < steps - 1){
+                        const transactionHash = await fetchTransactionHash(inputMixin.block_no, inputMixin.public_key);
+                        transactionList.push(transactionHash);
 
-                    const txResult = await OnionApi.getTransaction(transactionHash);
-                    const tx = await txResult.json();
+                        const txResult = await OnionApi.getTransaction(transactionHash);
+                        const tx = await txResult.json();
 
-                    temp_dates.push(tx.data.timestamp);
+                        temp_dates.push(tx.data.timestamp);
+                    }
+                    else {
+                        const blockResult = await OnionApi.getBlock(inputMixin.block_no);
+                        const block = await blockResult.json();
+                        temp_dates.push(block.data.timestamp);
+                    }
+                    
                 }
             }
         }
