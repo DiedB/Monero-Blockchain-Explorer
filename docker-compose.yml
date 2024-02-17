@@ -40,9 +40,6 @@ services:
             MYSQL_USER: ${MYSQL_USER}
             MYSQL_PASSWORD: ${MYSQL_PASSWORD}
             ONION_EXPLORER_HOST: ${ONION_EXPLORER_HOST}
-        volumes:
-            - ./api:/usr/app/
-            - bct-node-modules:/usr/app/node_modules
         ports:
             - "${API_PORT}:3001"
         depends_on:
@@ -61,14 +58,11 @@ services:
             PUBLIC_FRONTEND_URL: ${PUBLIC_FRONTEND_URL}
         command: >
             sh -c '
-                #echo "Starting site in production mode...";
-                #yarn serve;
-                echo "Starting site in development mode...";
-                yarn start
+                echo "Starting site in production mode...";
+                yarn serve;
+                #echo "Starting site in development mode...";
+                #yarn start
             '
-        volumes:
-            - ./frontend:/usr/app/
-            - bct-node-modules:/usr/app/node_modules
         ports:
             - "${FRONTEND_PORT}:3000"
         depends_on:
@@ -78,7 +72,6 @@ services:
 
 volumes:
     bct-database:
-    bct-node-modules:
 
 networks:
     bct-net:
