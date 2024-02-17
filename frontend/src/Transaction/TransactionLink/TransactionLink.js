@@ -12,10 +12,11 @@ const TransactionLink = ({ blockInfo, txHash }) => {
     useEffect(() => {
         const fetchTransactionHash = async () => {
             setIsLoading(true)
+            
+            //const transactionResult = await BctApi.getTransaction(blockInfo.block_no, blockInfo.public_key);
+            //const { transactionId } = await transactionResult.json()
+            const transactionId = blockInfo.tx_hash
 
-            const transactionResult = await BctApi.getTransaction(blockInfo.block_no, blockInfo.public_key);
-            const { transactionId } = await transactionResult.json()
-    
             setTransactionHash(transactionId)
             setIsLoading(false)  
         }
