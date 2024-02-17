@@ -52,10 +52,10 @@ services:
         restart: unless-stopped
         command: >
             sh -c '
-                echo "Starting site in production mode...";
-                yarn serve;
-                #echo "Starting site in development mode...";
-                #yarn start
+                #echo "Starting site in production mode...";
+                #yarn serve;
+                echo "Starting site in development mode...";
+                yarn start
             '
         ports:
             - "${FRONTEND_PORT}:3000"

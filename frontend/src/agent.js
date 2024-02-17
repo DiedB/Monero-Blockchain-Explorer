@@ -2,6 +2,7 @@ const ONION_EXPLORER_HOST = process.env.REACT_APP_ONION_EXPLORER_HOST
 const BCT_API_HOST = process.env.REACT_APP_PUBLIC_API_URL + ":" + process.env.REACT_APP_API_PORT
 
 const getRequest = (url) => {
+    console.log('fetching', url)
     return fetch(url);
 }
 
