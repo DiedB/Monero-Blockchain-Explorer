@@ -3,12 +3,12 @@ const cors = require('cors');
 const mysql = require('mysql2/promise');
 const fetch = require("node-fetch");
 
-const ONION_HOST = process.env.IS_LOCAL === "1" ? "http://localhost:8081/api" : "http://onion.bct.diederik.it:8081/api"
+const ONION_EXPLORER_HOST = process.env.ONION_EXPLORER_HOST
 const DB_PARAMS = {
-    host: process.env.IS_LOCAL === "1" ? "localhost" : "mysql.bct.diederik.it",
-    user: "root",
-    password: "w4NG!jVLlC0NFh&33aUQ",
-    database: "bct_diederik"
+    host: process.env.MYSQL_HOST,
+    user: process.env.MYSQL_USER,
+    password: process.env.MYSQL_PASSWORD,
+    database: process.env.MYSQL_DATABASE
 }
 
 const app = express();
@@ -49,8 +49,8 @@ const getRequest = (url) => {
 }
 
 const OnionApi = {
-    getTransaction: (id) => getRequest(`${ONION_HOST}/transaction/${id}`),
-    getBlock: (id) => getRequest(`${ONION_HOST}/block/${id}`),
+    getTransaction: (id) => getRequest(`${ONION_EXPLORER_HOST}/transaction/${id}`),
+    getBlock: (id) => getRequest(`${ONION_EXPLORER_HOST}/block/${id}`),
 }
 
 // Helper functions
