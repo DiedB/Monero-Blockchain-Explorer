@@ -13,10 +13,7 @@ const TransactionLink = ({ blockInfo, txHash }) => {
         const fetchTransactionHash = async () => {
             setIsLoading(true)
 
-            const transactionResult = await BctApi.getTransaction(blockInfo.block_no, blockInfo.public_key);
-            const { transactionId } = await transactionResult.json()
-    
-            setTransactionHash(transactionId)
+            setTransactionHash(blockInfo.tx_hash)
             setIsLoading(false)  
         }
 
