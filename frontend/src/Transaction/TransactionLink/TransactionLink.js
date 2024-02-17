@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
-import { BctApi } from '../../agent';
-
 import styles from './TransactionLink.module.css';
 
 const TransactionLink = ({ blockInfo, txHash }) => {
