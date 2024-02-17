@@ -110,5 +110,5 @@ const fetchDatesForGraph = async (id, steps) => {
 }
 
 app.listen(3001, () => {
-    console.log("Server is running (port 3001)");
+    console.log("API server is running (port 3001 forwarded to " + process.env.API_PORT + ")");
 });

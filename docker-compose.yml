@@ -50,12 +50,6 @@ services:
     frontend:
         build: ./frontend
         restart: unless-stopped
-        environment:
-            MYSQL_DATABASE: ${MYSQL_DATABASE}
-            MYSQL_USER: ${MYSQL_USER}
-            MYSQL_PASSWORD: ${MYSQL_PASSWORD}
-            NODE_ENV: ${NODE_ENV}
-            PUBLIC_FRONTEND_URL: ${PUBLIC_FRONTEND_URL}
         command: >
             sh -c '
                 echo "Starting site in production mode...";
