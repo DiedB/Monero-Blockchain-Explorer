@@ -1,28 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 
 import styles from './TransactionLink.module.css';
 
 const TransactionLink = ({ blockInfo, txHash }) => {
-    const [transactionHash, setTransactionHash] = useState(txHash);
-    const [isLoading, setIsLoading] = useState(false);
-
-    useEffect(() => {
-        const fetchTransactionHash = async () => {
-            setIsLoading(true)
-
-            setTransactionHash(blockInfo.tx_hash)
-            setIsLoading(false)  
-        }
-
-        if (!transactionHash) {
-            fetchTransactionHash();
-        }
-    })
-
-    return !isLoading ? (
-        <Link className={styles.TransactionLink} to={`/transaction/${transactionHash}`} />
-    ) : null;
+    return <Link className={styles.TransactionLink} to={`/transaction/${txHash ?? blockInfo.tx_hash}`} />
 }
 
 export default TransactionLink;
