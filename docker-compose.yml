@@ -39,7 +39,7 @@ services:
         working_dir: /app
         command: >
             sh -c '
-                npm install
+                npm install --silent
                 node api.js
             '
         environment:
@@ -65,7 +65,7 @@ services:
         command: >
             sh -c '
                 # export PATH="/app/node_modules/.bin:$PATH"
-                npm install
+                npm install --silent
                 # echo "Starting site in production mode...";
                 # npm run build
                 # yarn serve;
@@ -74,10 +74,10 @@ services:
             '
         environment:
             REACT_APP_ONION_EXPLORER_HOST: ${REACT_APP_ONION_EXPLORER_HOST}
-            REACT_APP_API_PORT: ${REACT_APP_API_PORT}
+            REACT_APP_PUBLIC_FRONTEND_URL: ${REACT_APP_PUBLIC_FRONTEND_URL}
             REACT_APP_FRONTEND_PORT: ${REACT_APP_FRONTEND_PORT}
             REACT_APP_PUBLIC_API_URL: ${REACT_APP_PUBLIC_API_URL}
-            REACT_APP_PUBLIC_FRONTEND_URL: ${REACT_APP_PUBLIC_FRONTEND_URL}
+            REACT_APP_API_PORT: ${REACT_APP_API_PORT}
         ports:
             - "${REACT_APP_FRONTEND_PORT}:3000"
         depends_on:
@@ -94,9 +94,16 @@ services:
         working_dir: /app
         command: >
             sh -c '
-                pip install --no-cache-dir -r requirements.txt
+                apt update && apt install -y build-essential libsystemd-dev
+                pip install --quiet -r requirements.txt
                 tail -F anything
             '
+        environment:
+            MYSQL_HOST: db
+            MYSQL_DATABASE: ${MYSQL_DATABASE}
+            MYSQL_USER: ${MYSQL_USER}
+            MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+            REACT_APP_ONION_EXPLORER_HOST: ${REACT_APP_ONION_EXPLORER_HOST}
         depends_on:
             - db
         volumes:

@@ -16,8 +16,22 @@ nano .env
 sudo docker compose up -d
 ```
 
+If you want to collect forward lookup data, you need to enter start lookup.py manually. Enter the container's shell (commands below) and hit `python3 lookup.py`
+
 ## Stop docker
 ```
 sudo docker compose down
 ```
 To remove all the volumes, add the -v flag. Make sure to do backups about the database before!
+
+## Open docker container's shell
+
+List active containers:
+
+`sudo docker ps`
+
+Open shell:
+
+`sudo docker exec -it <container_id> bash`
+
+
