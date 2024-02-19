@@ -15,7 +15,7 @@ import styles from './App.module.css';
 if (typeof process.env.REACT_APP_PUBLIC_FRONTEND_URL === 'undefined')
     console.log('ERROR: process.env.REACT_APP_PUBLIC_FRONTEND_URL is undefined')
 if (typeof process.env.REACT_APP_ONION_EXPLORER_HOST === 'undefined')
-    console.log('ERROR: process.env.REACT_APP_REACT_APP_ONION_EXPLORER_HOST is undefined')
+    console.log('ERROR: process.env.REACT_APP_ONION_EXPLORER_HOST is undefined')
 if (typeof process.env.REACT_APP_PUBLIC_API_URL === 'undefined')
     console.log('ERROR: process.env.REACT_APP_PUBLIC_API_URL is undefined')
 if (typeof process.env.REACT_APP_API_PORT === 'undefined')

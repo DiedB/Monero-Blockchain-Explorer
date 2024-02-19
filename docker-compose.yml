@@ -26,42 +26,81 @@ services:
             PMA_HOST: db
             UPLOAD_LIMIT: 1000000000
         ports:
-            - '${PUBLIC_PHPMYADMIN_PORT}:80'
+            - '${PHPMYADMIN_PORT}:80'
         depends_on:
             - db
         networks:
             - bct-net
 
     api:
-        build: ./api
+        image: node:latest
+        container_name: bct-api
         restart: unless-stopped
+        working_dir: /app
+        command: >
+            sh -c '
+                npm install
+                node api.js
+            '
         environment:
             MYSQL_HOST: db
             MYSQL_DATABASE: ${MYSQL_DATABASE}
             MYSQL_USER: ${MYSQL_USER}
             MYSQL_PASSWORD: ${MYSQL_PASSWORD}
-            ONION_EXPLORER_HOST: ${ONION_EXPLORER_HOST}
+            REACT_APP_ONION_EXPLORER_HOST: ${REACT_APP_ONION_EXPLORER_HOST}
         ports:
-            - "${API_PORT}:3001"
+            - "${REACT_APP_API_PORT}:3001"
         depends_on:
             - db
+        volumes:
+            - ./api:/app
         networks:
             - bct-net
 
     frontend:
-        build: ./frontend
+        image: node:latest
+        container_name: bct-frontend
         restart: unless-stopped
+        working_dir: /app
         command: >
             sh -c '
-                #echo "Starting site in production mode...";
-                #yarn serve;
+                # export PATH="/app/node_modules/.bin:$PATH"
+                npm install
+                # echo "Starting site in production mode...";
+                # npm run build
+                # yarn serve;
                 echo "Starting site in development mode...";
                 yarn start
             '
+        environment:
+            REACT_APP_ONION_EXPLORER_HOST: ${REACT_APP_ONION_EXPLORER_HOST}
+            REACT_APP_API_PORT: ${REACT_APP_API_PORT}
+            REACT_APP_FRONTEND_PORT: ${REACT_APP_FRONTEND_PORT}
+            REACT_APP_PUBLIC_API_URL: ${REACT_APP_PUBLIC_API_URL}
+            REACT_APP_PUBLIC_FRONTEND_URL: ${REACT_APP_PUBLIC_FRONTEND_URL}
         ports:
-            - "${FRONTEND_PORT}:3000"
+            - "${REACT_APP_FRONTEND_PORT}:3000"
         depends_on:
             - db
+        volumes:
+            - ./frontend:/app
+        networks:
+            - bct-net
+
+    lookup:
+        image: python:3
+        container_name: bct-lookup
+        restart: unless-stopped
+        working_dir: /app
+        command: >
+            sh -c '
+                pip install --no-cache-dir -r requirements.txt
+                tail -F anything
+            '
+        depends_on:
+            - db
+        volumes:
+            - ./lookup:/app
         networks:
             - bct-net
 

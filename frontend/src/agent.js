@@ -1,4 +1,4 @@
-const ONION_EXPLORER_HOST = process.env.REACT_APP_ONION_EXPLORER_HOST
+const REACT_APP_ONION_EXPLORER_HOST = process.env.REACT_APP_ONION_EXPLORER_HOST
 const BCT_API_HOST = process.env.REACT_APP_PUBLIC_API_URL + ":" + process.env.REACT_APP_API_PORT
 
 const getRequest = (url) => {
@@ -7,8 +7,8 @@ const getRequest = (url) => {
 }
 
 const OnionApi = {
-    getTransaction: (id) => getRequest(`${ONION_EXPLORER_HOST}/transaction/${id}`),
-    getBlock: (id) => getRequest(`${ONION_EXPLORER_HOST}/block/${id}`),
+    getTransaction: (id) => getRequest(`${REACT_APP_ONION_EXPLORER_HOST}/transaction/${id}`),
+    getBlock: (id) => getRequest(`${REACT_APP_ONION_EXPLORER_HOST}/block/${id}`),
 }
 
 const BctApi = {

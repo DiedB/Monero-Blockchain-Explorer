@@ -5,8 +5,8 @@ const fetch = require("node-fetch");
 
 
 // Test env variables
-if (typeof process.env.ONION_EXPLORER_HOST === 'undefined')
-    console.log('ERROR: process.env.ONION_EXPLORER_HOST is undefined')
+if (typeof process.env.REACT_APP_ONION_EXPLORER_HOST === 'undefined')
+    console.log('ERROR: process.env.REACT_APP_ONION_EXPLORER_HOST is undefined')
 if (typeof process.env.MYSQL_HOST === 'undefined')
     console.log('ERROR: process.env.MYSQL_HOST is undefined')
 if (typeof process.env.MYSQL_USER === 'undefined')
@@ -17,7 +17,7 @@ if (typeof process.env.MYSQL_DATABASE === 'undefined')
     console.log('ERROR: process.env.MYSQL_DATABASE is undefined')
 
 
-const ONION_EXPLORER_HOST = process.env.ONION_EXPLORER_HOST
+const REACT_APP_ONION_EXPLORER_HOST = process.env.REACT_APP_ONION_EXPLORER_HOST
 const DB_PARAMS = {
     host: process.env.MYSQL_HOST,
     user: process.env.MYSQL_USER,
@@ -63,8 +63,8 @@ const getRequest = (url) => {
 }
 
 const OnionApi = {
-    getTransaction: (id) => getRequest(`${ONION_EXPLORER_HOST}/transaction/${id}`),
-    getBlock: (id) => getRequest(`${ONION_EXPLORER_HOST}/block/${id}`),
+    getTransaction: (id) => getRequest(`${REACT_APP_ONION_EXPLORER_HOST}/transaction/${id}`),
+    getBlock: (id) => getRequest(`${REACT_APP_ONION_EXPLORER_HOST}/block/${id}`),
 }
 
 // Helper functions

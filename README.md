@@ -5,28 +5,19 @@ A Monero Blockchain Explorer based on the https://github.com/moneroexamples/onio
 
 # Setup
 
-Prepare .env in .
 ```
 cd Monero-Blockchain-Explorer
 cp .env.example .env
 nano .env
 ```
 
-Prepare .env in frontend/
+## Start docker
 ```
-cd Monero-Blockchain-Explorer/frontend
-cp .env.example .env
-nano .env
-```
-
-Run in docker
-```
-cd Monero-Blockchain-Explorer
 sudo docker compose up -d
 ```
 
-Stop docker
+## Stop docker
 ```
-cd Monero-Blockchain-Explorer
 sudo docker compose down
 ```
+To remove all the volumes, add the -v flag. Make sure to do backups about the database before!
