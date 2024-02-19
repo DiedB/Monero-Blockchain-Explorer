@@ -3,6 +3,20 @@ const cors = require('cors');
 const mysql = require('mysql2/promise');
 const fetch = require("node-fetch");
 
+
+// Test env variables
+if (typeof process.env.ONION_EXPLORER_HOST === 'undefined')
+    console.log('ERROR: process.env.ONION_EXPLORER_HOST is undefined')
+if (typeof process.env.MYSQL_HOST === 'undefined')
+    console.log('ERROR: process.env.MYSQL_HOST is undefined')
+if (typeof process.env.MYSQL_USER === 'undefined')
+    console.log('ERROR: process.env.MYSQL_USER is undefined')
+if (typeof process.env.MYSQL_PASSWORD === 'undefined')
+    console.log('ERROR: process.env.MYSQL_PASSWORD is undefined')
+if (typeof process.env.MYSQL_DATABASE === 'undefined')
+    console.log('ERROR: process.env.MYSQL_DATABASE is undefined')
+
+
 const ONION_EXPLORER_HOST = process.env.ONION_EXPLORER_HOST
 const DB_PARAMS = {
     host: process.env.MYSQL_HOST,
@@ -110,5 +124,5 @@ const fetchDatesForGraph = async (id, steps) => {
 }
 
 app.listen(3001, () => {
-    console.log("API server is running (port 3001 forwarded to " + process.env.API_PORT + ")");
+    console.log("API server is running");
 });
