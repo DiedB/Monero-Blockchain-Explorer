@@ -6,23 +6,13 @@ import logging
 from cysystemd import journal
 import os
 
-# version Diederik
+API_HOST = os.environ['REACT_APP_ONION_EXPLORER_HOST']
+LIMIT = 10
+START_BLOCK = 0
 
 log = logging.getLogger('lookup')
 log.addHandler(journal.JournaldLogHandler())
 log.setLevel(logging.INFO)
-
-def insert(db_conn, ins):
-    cursor = db_conn.cursor()
-
-    sql = "INSERT INTO lookup (pk, tx_hash) VALUES (UNHEX(%s), UNHEX(%s))"
-    cursor.executemany(sql, ins)
-    db_conn.commit()
-
-API_HOST = os.environ['REACT_APP_ONION_EXPLORER_HOST']
-LIMIT = 10
-TOTAL_PAGES = 206406
-START_PAGE = 48413
 
 db_connection = pymysql.connect(
     host = os.environ['MYSQL_HOST'],
@@ -32,35 +22,55 @@ db_connection = pymysql.connect(
     db = os.environ['MYSQL_DATABASE']
 )
 
-for c in range(TOTAL_PAGES - START_PAGE):
-    print('Downloading page ' + str(c))
-    c = c + START_PAGE
-    log.info('%s/%s', c, TOTAL_PAGES)
+def insert(db_conn, ins):
+    cursor = db_conn.cursor()
 
-    url = f"{API_HOST}/transactions?page={c}&limit={LIMIT}"
+    sql = "INSERT INTO lookup (pk, tx_hash) VALUES (UNHEX(%s), UNHEX(%s))"
+    cursor.executemany(sql, ins)
+    db_conn.commit()
+
+def write_height(height):
+    # Open the file in write mode ('w')
+    with open('lookup_next_block_height.txt', 'w') as file:
+        file.write(str(height))
+
+def get_next_height():
+    try:
+        # Open the file in read mode ('r')
+        with open('lookup_next_block_height.txt', 'r') as file:
+            return int(file.read())
+    except FileNotFoundError:
+        return 0
+
+block_height = get_next_height()
+print(f"Starting lookup from block height {block_height}")
+while True:
+    log.info('Downloading block %s', block_height)
+
+    url = f"{API_HOST}/block/{block_height}"
     api_result = grequests.map([grequests.get(url)])[0]
-    result = api_result.json()
+    block = api_result.json()
 
-    in_results = set()
-
-    for block in result['data']['blocks']:
-        print('  Downloading txes for block ' + str(block['height']) + ' ' + block['timestamp_utc'])
+    if block['status'] == 'fail':
+        time.sleep(10)
+    else:
+        log.info('Downloading %s transactions for block %s', len(block['data']['txs']), block_height)
+        print(f"Downloading {len(block['data']['txs'])} transactions for block {block_height}")
+        in_results = set()
         urls = []
-
-        for tx in block['txs']:
+        for tx in block['data']['txs']:
             tx_hash = tx['tx_hash']
-            # print('    Downloading tx ' + tx_hash)
             urls.append(f"{API_HOST}/transaction/{tx_hash}")
-
+        
         responses = grequests.map(grequests.get(u) for u in urls)
 
         for api_result_tx in responses:
             result_tx = api_result_tx.json()
-
             if result_tx['data']['inputs'] is not None:
                 for ins in result_tx['data']['inputs']:
                     for mixin in ins['mixins']:
                         in_results.add((mixin['public_key'], tx_hash))
 
-    insert(db_connection, in_results)
-
+        insert(db_connection, in_results)
+        block_height += 1
+        write_height(block_height)

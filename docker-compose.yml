@@ -80,8 +80,6 @@ services:
             REACT_APP_API_PORT: ${REACT_APP_API_PORT}
         ports:
             - "${REACT_APP_FRONTEND_PORT}:3000"
-        depends_on:
-            - db
         volumes:
             - ./frontend:/app
         networks:
@@ -94,8 +92,9 @@ services:
         working_dir: /app
         command: >
             sh -c '
-                apt update && apt install -y build-essential libsystemd-dev
+                apt-get update && apt-get install -y build-essential libsystemd-dev
                 pip install --quiet -r requirements.txt
+                python3 -u lookup.py
                 tail -F anything
             '
         environment:
@@ -106,6 +105,7 @@ services:
             REACT_APP_ONION_EXPLORER_HOST: ${REACT_APP_ONION_EXPLORER_HOST}
         depends_on:
             - db
+            - api
         volumes:
             - ./lookup:/app
         networks:
