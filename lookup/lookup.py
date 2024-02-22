@@ -49,8 +49,14 @@ while True:
 
     url = f"{API_HOST}/block/{block_height}"
     api_result = grequests.map([grequests.get(url)])[0]
-    block = api_result.json()
+    try:
+        block = api_result.json()
+    except Exception as e:
+        print('url:', url)
+        print(e)
+        time.sleep(9999999)
 
+    
     if block['status'] == 'fail':
         time.sleep(10)
     else:
