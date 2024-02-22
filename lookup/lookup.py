@@ -1,6 +1,6 @@
 import json
 import grequests
-import datetime
+import time
 import pymysql
 import logging
 from cysystemd import journal
@@ -46,41 +46,60 @@ def percentage(part, whole):
     percentage_number = 100 * float(part)/float(whole)
     return "{:.2f}".format(percentage_number) + "%"
 
+def get_concurrency(height):
+    if height < 1371520: # block per tx is low before 2017. 08.
+        return 30
+    if height < 3089848: # less than current height
+        return 10
+    else:
+        return 1
+
+def get_blocks(block_height, number_of_blocks):
+    log.info('Downloading %s blocks from %s', number_of_blocks, block_height)
+
+    urls = []
+    for i in range(number_of_blocks):
+        urls.append(f"{API_HOST}/block/{block_height + i}")
+    
+    responses = grequests.map(grequests.get(u) for u in urls)
+    block_json = []
+    for block_raw in responses:
+        try:
+            block_json.append(block_raw.json())
+        except Exception as e:
+            print('url:', url)
+            print(e)
+            time.sleep(9999999)
+    return block_json
+
+
 block_height = get_next_height()
 print(f"Starting lookup from block height {block_height}")
 while True:
-    log.info('Downloading block %s', block_height)
+    concurrency = get_concurrency(block_height)
+    blocks = get_blocks(block_height, concurrency)
+    urls = []
+    for block in blocks:
+        if block['status'] == 'fail':
+            time.sleep(10)
+            break
+        else:
+            for tx in block['data']['txs']:
+                urls.append(f"{API_HOST}/transaction/{tx['tx_hash']}")
+            
+    log.info(f"Downloading {len(urls)} transactions for {concurrency} blocks from height {block_height} ({percentage(block_height, block['data']['current_height'])})")
+    print(f"Downloading {len(urls)} transactions for {concurrency} blocks from height {block_height} ({percentage(block_height, block['data']['current_height'])})")
+    responses = grequests.map(grequests.get(u) for u in urls)
 
-    url = f"{API_HOST}/block/{block_height}"
-    api_result = grequests.map([grequests.get(url)])[0]
-    try:
-        block = api_result.json()
-    except Exception as e:
-        print('url:', url)
-        print(e)
-        time.sleep(9999999)
+    in_results = set()
+    for api_result_tx in responses:
+        result_tx = api_result_tx.json()
+        tx_hash = result_tx['data']['tx_hash']
+        if result_tx['data']['inputs'] is not None:
+            for ins in result_tx['data']['inputs']:
+                for mixin in ins['mixins']:
+                    in_results.add((mixin['public_key'], tx_hash))
 
-    
-    if block['status'] == 'fail':
-        time.sleep(10)
-    else:
-        log.info('Downloading %s transactions for block %s (%s)', len(block['data']['txs']), block_height, percentage(block_height, block['data']['current_height']))
-        print(f"Downloading {len(block['data']['txs'])} transactions for block {block_height} ({percentage(block_height, block['data']['current_height'])})")
-        in_results = set()
-        urls = []
-        for tx in block['data']['txs']:
-            tx_hash = tx['tx_hash']
-            urls.append(f"{API_HOST}/transaction/{tx_hash}")
-        
-        responses = grequests.map(grequests.get(u) for u in urls)
-
-        for api_result_tx in responses:
-            result_tx = api_result_tx.json()
-            if result_tx['data']['inputs'] is not None:
-                for ins in result_tx['data']['inputs']:
-                    for mixin in ins['mixins']:
-                        in_results.add((mixin['public_key'], tx_hash))
-
-        insert(db_connection, in_results)
-        block_height += 1
-        write_height(block_height)
+    insert(db_connection, in_results)
+    block_height += concurrency
+    write_height(block_height)
