@@ -43,8 +43,8 @@ def get_next_height():
         return 0
 
 def percentage(part, whole):
-    Percentage = 100 * float(part)/float(whole)
-    return str(Percentage) + “%”
+    percentage_number = 100 * float(part)/float(whole)
+    return str(percentage_number) + "%"
 
 block_height = get_next_height()
 print(f"Starting lookup from block height {block_height}")
