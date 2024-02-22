@@ -42,6 +42,10 @@ def get_next_height():
     except FileNotFoundError:
         return 0
 
+def percentage(part, whole):
+    Percentage = 100 * float(part)/float(whole)
+    return str(Percentage) + “%”
+
 block_height = get_next_height()
 print(f"Starting lookup from block height {block_height}")
 while True:
@@ -60,8 +64,8 @@ while True:
     if block['status'] == 'fail':
         time.sleep(10)
     else:
-        log.info('Downloading %s transactions for block %s', len(block['data']['txs']), block_height)
-        print(f"Downloading {len(block['data']['txs'])} transactions for block {block_height}")
+        log.info('Downloading %s transactions for block %s (%s)', len(block['data']['txs']), block_height, percentage(block_height, block['data']['current_height']))
+        print(f"Downloading {len(block['data']['txs'])} transactions for block {block_height} ({percentage(block_height, block['data']['current_height'])})")
         in_results = set()
         urls = []
         for tx in block['data']['txs']:
