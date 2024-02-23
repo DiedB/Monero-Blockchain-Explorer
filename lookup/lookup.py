@@ -47,10 +47,12 @@ def percentage(part, whole):
     return "{:.2f}".format(percentage_number) + "%"
 
 def get_concurrency(height):
-    if height < 1371520: # block per tx is low before 2017. 08.
+    if height < 186000:
         return 30
-    if height < 3089848: # less than current height
+    elif height < 1371520: # block per tx is low before 2017. 08.
         return 10
+    elif height < 3089848: # less than current height
+        return 3
     else:
         return 1
 
