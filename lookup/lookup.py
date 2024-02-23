@@ -64,12 +64,7 @@ def get_blocks(block_height, number_of_blocks):
     responses = grequests.map(grequests.get(u) for u in urls)
     block_json = []
     for block_raw in responses:
-        try:
-            block_json.append(block_raw.json())
-        except Exception as e:
-            print('url:', url)
-            print(e)
-            time.sleep(9999999)
+        block_json.append(block_raw.json())
     return block_json
 
 
