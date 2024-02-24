@@ -63,7 +63,7 @@ const Transaction = () => {
                                 <div>
                                     {transactionInfo.inputs && [...Array(transactionInfo.inputs.length).keys()].map(i => (
                                         <div key={(i)}>
-                                            <RingSignature txHash={transactionInfo.tx_hash} keyImage={transactionInfo.inputs[i].key_image} mixin={transactionInfo.inputs[i].mixins.length + 1} />
+                                            <RingSignature txHash={transactionInfo.tx_hash} keyImage={transactionInfo.inputs[i].key_image} mixin={transactionInfo.inputs[i].mixins.length} />
                                         </div>
                                     ))}
                                 </div>

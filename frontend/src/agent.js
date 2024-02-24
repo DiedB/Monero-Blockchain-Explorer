@@ -1,19 +1,20 @@
-const ONION_HOST = "http://onion.bct.diederik.it:8081/api"
-const BCT_HOST = "http://api.bct.diederik.it:3001"
+const REACT_APP_ONION_EXPLORER_HOST = process.env.REACT_APP_ONION_EXPLORER_HOST
+const BCT_API_HOST = process.env.REACT_APP_PUBLIC_API_URL + ":" + process.env.REACT_APP_API_PORT
 
 const getRequest = (url) => {
+    console.log('fetching', url)
     return fetch(url);
 }
 
 const OnionApi = {
-    getTransaction: (id) => getRequest(`${ONION_HOST}/transaction/${id}`),
-    getBlock: (id) => getRequest(`${ONION_HOST}/block/${id}`),
+    getTransaction: (id) => getRequest(`${REACT_APP_ONION_EXPLORER_HOST}/transaction/${id}`),
+    getBlock: (id) => getRequest(`${REACT_APP_ONION_EXPLORER_HOST}/block/${id}`),
 }
 
 const BctApi = {
-    getOutput: (pk) => getRequest(`${BCT_HOST}/output/${pk}`),
-    getGraph: (id) => getRequest(`${BCT_HOST}/graph/${id}/2`),
-    getTransaction: (blockNumber, publicKey) => getRequest(`${BCT_HOST}/transaction/${blockNumber}/${publicKey}`)
+    getOutput: (pk) => getRequest(`${BCT_API_HOST}/output/${pk}`),
+    getGraph: (id) => getRequest(`${BCT_API_HOST}/graph/${id}/2`),
+    getTransaction: (blockNumber, publicKey) => getRequest(`${BCT_API_HOST}/transaction/${blockNumber}/${publicKey}`)
 }
 
 export { BctApi, OnionApi };
