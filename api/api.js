@@ -3,12 +3,26 @@ const cors = require('cors');
 const mysql = require('mysql2/promise');
 const fetch = require("node-fetch");
 
-const ONION_HOST = process.env.IS_LOCAL === "1" ? "http://localhost:8081/api" : "http://onion.bct.diederik.it:8081/api"
+
+// Test env variables
+if (typeof process.env.REACT_APP_ONION_EXPLORER_HOST === 'undefined')
+    console.log('ERROR: process.env.REACT_APP_ONION_EXPLORER_HOST is undefined')
+if (typeof process.env.MYSQL_HOST === 'undefined')
+    console.log('ERROR: process.env.MYSQL_HOST is undefined')
+if (typeof process.env.MYSQL_USER === 'undefined')
+    console.log('ERROR: process.env.MYSQL_USER is undefined')
+if (typeof process.env.MYSQL_PASSWORD === 'undefined')
+    console.log('ERROR: process.env.MYSQL_PASSWORD is undefined')
+if (typeof process.env.MYSQL_DATABASE === 'undefined')
+    console.log('ERROR: process.env.MYSQL_DATABASE is undefined')
+
+
+const REACT_APP_ONION_EXPLORER_HOST = process.env.REACT_APP_ONION_EXPLORER_HOST
 const DB_PARAMS = {
-    host: process.env.IS_LOCAL === "1" ? "localhost" : "mysql.bct.diederik.it",
-    user: "root",
-    password: "w4NG!jVLlC0NFh&33aUQ",
-    database: "bct_diederik"
+    host: process.env.MYSQL_HOST,
+    user: process.env.MYSQL_USER,
+    password: process.env.MYSQL_PASSWORD,
+    database: process.env.MYSQL_DATABASE
 }
 
 const app = express();
@@ -49,8 +63,8 @@ const getRequest = (url) => {
 }
 
 const OnionApi = {
-    getTransaction: (id) => getRequest(`${ONION_HOST}/transaction/${id}`),
-    getBlock: (id) => getRequest(`${ONION_HOST}/block/${id}`),
+    getTransaction: (id) => getRequest(`${REACT_APP_ONION_EXPLORER_HOST}/transaction/${id}`),
+    getBlock: (id) => getRequest(`${REACT_APP_ONION_EXPLORER_HOST}/block/${id}`),
 }
 
 // Helper functions
@@ -110,5 +124,5 @@ const fetchDatesForGraph = async (id, steps) => {
 }
 
 app.listen(3001, () => {
-    console.log("Server is running (port 3001)");
+    console.log("API server is running");
 });
